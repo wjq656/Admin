@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	*{margin:0;padding:0;}
+	.box{width:200px;height:300px;border:2px solid #000;background:red;position:absolute;top:10px;left:20px}
+  
+  </style>
+ </head>
+ <body>
+  <div class = "box"></div>
+  <div class = "box"></div>
+  <div class = "box"></div>
+	
+<form action = "moveServlet" mothod = "post">
+	<input type = "text" name = "user1" class= "in"/>
+	<br />
+	<input type = "text" name = "user2" class= "in"/>
+	<br />
+	<input type = "text" name = "user3" class= "in"/>
+	<input type = "submit" value = "提交"/>
+</form>
+  <script type = "text/javascript">
+  
+	(function(){
+		//我需要记录三个模块的位置
+
+		//var box = document.getElementById("box");
+		var input = document.getElementsByClassName("in");//修改
+		var inputs = Array.prototype.slice.call(input);//已经成功转换成了数组元素可以控制到 每一个框  
+		//接下来是如何通过把每一个盒子跟输入框 绑定
+
+
+		var box = document.getElementsByClassName("box");
+		var boxs = Array.prototype.slice.call(box);//将元素 转化成数组来控制
+
+
+		//box[0].style.left = 60+"px";
+		var x,y,top,left,mark = false;
+		var ww = window.innerWidth;//获取窗口的大小
+		var hh = window.innerHeight;
+		var height = 0;
+		var width=0;
+
+		var maxX =0;
+		var maxY = 0;
+
+		var zIndex = 1;
+		
+		
+		maxX = ww - width;
+		maxY = hh - height;
+		 maxX = ww - width;
+		 maxY = hh - height;
+
+		boxs[0].addEventListener("mousedown",function(e){
+			zIndex ++;
+			this.style.zIndex =zIndex;
+			var e = event;
+			x = e.clientX;
+			y = e.clientY;
+			
+			top = this.offsetTop;
+			left = this.offsetLeft;
+			mark = true;
+		});
+
+		boxs[0].addEventListener("mousemove",function(e){
+			if(mark){
+				var e = event
+				var xx = e.clientX;
+				var yy = e.clientY;
+
+				var nTop = yy - y + top;
+				var nLeft = xx - x + left;
+				if(nTop <= 0)nTop = 1;
+				if(nTop >= maxY)nTop =maxY;
+				if(nLeft <= 0)nLeft = 1;
+				if(nLeft >= maxX)nLeft =maxX;
+				this.style.top = nTop +"px";
+				this.style.left = nLeft +"px";
+				//alert(i);//为什么I一直是3
+				inputs[0].value = nTop +"px"+nLeft+"px";//修改
+				
+			}
+		});
+
+		boxs[0].addEventListener("mouseup",function(){mark = false;});
+	
+		boxs[1].addEventListener("mousedown",function(e){
+			zIndex ++;
+			this.style.zIndex =zIndex;
+			var e = event;
+			x = e.clientX;
+			y = e.clientY;
+			
+			top = this.offsetTop;
+			left = this.offsetLeft;
+			mark = true;
+		});
+		boxs[1].addEventListener("mousemove",function(e){
+			if(mark){
+				var e = event
+				var xx = e.clientX;
+				var yy = e.clientY;
+
+				var nTop = yy - y + top;
+				var nLeft = xx - x + left;
+				if(nTop <= 0)nTop = 1;
+				if(nTop >= maxY)nTop =maxY;
+				if(nLeft <= 0)nLeft = 1;
+				if(nLeft >= maxX)nLeft =maxX;
+				this.style.top = nTop +"px";
+				this.style.left = nLeft +"px";
+				//alert(i);//为什么I一直是3
+				inputs[1].value = nTop +"px"+nLeft+"px";//修改
+				
+			}
+		});
+		boxs[1].addEventListener("mouseup",function(){mark = false;});
+		
+		boxs[2].addEventListener("mousedown",function(e){
+			zIndex ++;
+			this.style.zIndex =zIndex;
+			var e = event;
+			x = e.clientX;
+			y = e.clientY;
+			
+			top = this.offsetTop;
+			left = this.offsetLeft;
+			mark = true;
+		});
+		boxs[2].addEventListener("mousemove",function(e){
+			if(mark){
+				var e = event
+				var xx = e.clientX;
+				var yy = e.clientY;
+
+				var nTop = yy - y + top;
+				var nLeft = xx - x + left;
+				if(nTop <= 0)nTop = 1;
+				if(nTop >= maxY)nTop =maxY;
+				if(nLeft <= 0)nLeft = 1;
+				if(nLeft >= maxX)nLeft =maxX;
+				this.style.top = nTop +"px";
+				this.style.left = nLeft +"px";
+				//alert(i);//为什么I一直是3
+				inputs[2].value = nTop +"px"+nLeft+"px";//修改
+				
+			}
+		});
+		boxs[2].addEventListener("mouseup",function(){mark = false;});
+		
+
+
+		
+	})()
+  
+  </script>
+ </body>
+</html>
